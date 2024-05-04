@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <CompilerVisibleProperty Include="RootNamespace" />
+        <CompilerVisibleProperty Include="ProjectDir" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <!-- <RoslynArtifacts>../../dotnet/roslyn/artifacts/</RoslynArtifacts> -->
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(RoslynArtifacts)' != ''">
+        <PackageReference Include="Microsoft.Net.Compilers.Toolset" VersionOverride="4.11.0-dev" PrivateAssets="all" />
+
+        <Analyzer Include="$(RoslynArtifacts)bin/Microsoft.CodeAnalysis.CodeStyle/Debug/netstandard2.0/Microsoft.CodeAnalysis.CodeStyle.dll" />
+        <Analyzer Include="$(RoslynArtifacts)bin/Microsoft.CodeAnalysis.CodeStyle.Fixes/Debug/netstandard2.0/Microsoft.CodeAnalysis.CodeStyle.Fixes.dll" />
+        <Analyzer Include="$(RoslynArtifacts)bin/Microsoft.CodeAnalysis.CSharp.CodeStyle/Debug/netstandard2.0/Microsoft.CodeAnalysis.CSharp.CodeStyle.dll" />
+        <Analyzer Include="$(RoslynArtifacts)bin/Microsoft.CodeAnalysis.CSharp.CodeStyle.Fixes/Debug/netstandard2.0/Microsoft.CodeAnalysis.CSharp.CodeStyle.Fixes.dll" />
+    </ItemGroup>
+</Project>
